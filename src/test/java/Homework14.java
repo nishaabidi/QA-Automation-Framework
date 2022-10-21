@@ -21,7 +21,7 @@ public class Homework14 {
 
     @Test
     public static void Homework14Solution () throws InterruptedException {
-
+        
         String url = "https://bbb.testpro.io/";
         String registrationURL = "https://bbb.testpro.io/registration.php";
 
