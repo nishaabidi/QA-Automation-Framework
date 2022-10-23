@@ -5,10 +5,9 @@
 
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="ChangeUsernameTests"/>
-<!--            <class name="BaseTest"/>-->
-<!--            <class name="LoginTests"/>-->
-<!--            <class name="RegistrationTests"/>-->
+            <class name="LoginTests"/>
+            <class name="BaseTest"/>
+            <class name="Homework16"/>
         </classes>
     </test>
 </suite>
