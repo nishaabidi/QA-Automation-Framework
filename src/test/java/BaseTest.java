@@ -22,7 +22,7 @@ public class BaseTest {
     }
 
 //    @AfterMethod
-    public void teadDownBrowser() {
+    public void tearDownBrowser() {
         driver.quit();
     }
 
@@ -49,7 +49,6 @@ public class BaseTest {
     public void providePassword() {
         WebElement passwordField = driver.findElement(By.cssSelector("[type='password']"));
         passwordField.click();
-        passwordField.sendKeys("te$t$tudent");
-
+        passwordField.sendKeys("Mylife#1234");
     }
 }
