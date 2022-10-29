@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="songPlaySuite">
+    <parameter name="baseURL" value="https://bbb.testpro.io"/>
+
+    <test name="songPlay Test" preserve-order="false">
+        <classes>
+            <class name="Homework18">
+                <methods>
+                    <include name="playSong" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>
