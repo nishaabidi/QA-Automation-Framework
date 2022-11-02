@@ -61,4 +61,9 @@ public class BaseTest {
                 {"", ""}
         };
     }
+    public void logIn(){
+        provideEmail("nishaabidi@yahoo.com");
+        providePassword("Mylife#1234");
+        clickSubmitBtn();
+    }
 }

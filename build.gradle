@@ -20,8 +20,8 @@ test {
     }
 }
 
-task testHW18(type: Test) {
+test {
     useTestNG() {
-        suites "src/test/resources/Homework18.xml"
+        suites "src/test/resources/deletePlaylist.xml"
     }
 }
