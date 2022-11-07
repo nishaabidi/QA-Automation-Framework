@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,6 +15,9 @@ public class BaseTest {
 
     WebDriver driver;
     WebDriverWait wait;
+
+    Actions actions;
+
     String url;
 
     @BeforeSuite
@@ -29,6 +33,7 @@ public class BaseTest {
     public void launchBrowser(String baseURL) {
 
         driver = new ChromeDriver();
+        actions = new Actions(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         url = baseURL;
         driver.get(url);

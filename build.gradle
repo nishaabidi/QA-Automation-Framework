@@ -22,6 +22,6 @@ test {
 
 test {
     useTestNG() {
-        suites "src/test/resources/explicitWaits.xml"
+        suites "src/test/resources/renamePlaylist.xml"
     }
 }
