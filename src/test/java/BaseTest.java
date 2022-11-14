@@ -30,14 +30,20 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"baseURL"})
+    // we have used parameterization here but we havent declared it in our TestNG xml file.
+    // lets try adding it to our TestNG xml file..
+    // now our launchbrowser method can now access baseurl parameter in TestNG xml file
+    // lets try running it
     public void launchBrowser(String baseURL) {
 
         driver = new ChromeDriver();
         actions = new Actions(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         url = baseURL;
         driver.get(url);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+
     }
 
     @AfterMethod

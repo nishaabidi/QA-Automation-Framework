@@ -20,8 +20,8 @@ test {
     }
 }
 
-test {
-    useTestNG() {
-        suites "src/test/resources/renamePlaylist.xml"
-    }
-}
+//test {
+//    useTestNG() {
+//        suites "src/test/resources/renamePlaylist.xml"
+//    }
+//}

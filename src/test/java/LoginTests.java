@@ -1,3 +1,7 @@
+import POM.pages.AllSongsPage;
+import POM.pages.BasePage;
+import POM.pages.HomePage;
+import POM.pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,17 +18,70 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-    @Test(priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
-    public void LoginValidEmailValidPasswordTest (String email, String password) {
+//    @Test(priority = 1, dataProvider = "invalidCredentials", dataProviderClass = BaseTest.class)
+//    Test for POM Login
 
-        provideEmail(email); // "demo@class.com"
-        providePassword(password); // te$t$tudent
-        clickSubmitBtn();
 
-        WebElement avatarIcon = driver.findElement(By.xpath("//img[contains(@alt,'Avatar of')]"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
+//I think we just missed a closing square bracket a while ago "{"
+    @Test
+    public void LoginValidEmailValidPasswordTest () {
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("nishaabidi@yahoo.com");
+        loginPage.providePassword("Mylife#1234");
+        loginPage.clickSubmitBtn();
+
+        Assert.assertTrue(homePage.isUserAvatarDisplayed());
 
     }
+
+//    Test for POM AllSongs Shuffle
+    @Test
+
+    public void Shuffle() {
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        BasePage basePage = new BasePage(driver);
+//shuffle works
+//         step 1 login
+        loginPage.login();
+//        click on all songs
+        basePage.clickOnAllSongs();
+//        shuffle all songs
+        allSongsPage.shuffle();
+
+
+
+//Test for POM All Songs song is playing
+    }
+        @Test
+        public void PlayASongFromAllSongs(){
+
+            LoginPage loginPage = new LoginPage(driver);
+            HomePage homePage= new HomePage(driver);
+            BasePage basePage = new BasePage(driver);
+            AllSongsPage allSongsPage = new AllSongsPage(driver);
+
+            // we have an error on our actions class
+//        step 1 login
+        loginPage.login();
+//        step 2 click on all songs
+        basePage.clickOnAllSongs();
+//        step 3 double click on first song
+        allSongsPage.doubleClickFirstSong();
+//        check if song is playing
+        Assert.assertTrue(homePage.isSongPlaying());
+        //
+        }
+
+
+
+
+
+
+
 
     @Test(enabled = false, priority = 2)
     public void LoginInvalidEmailPasswordTest () throws InterruptedException {

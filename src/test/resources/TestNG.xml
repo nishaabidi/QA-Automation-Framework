@@ -4,12 +4,19 @@
 <suite name="TestNG">
 
     <test name="Example Test" preserve-order="false">
+        <parameter name="baseURL" value="https://bbb.testpro.io/"/>
+<!--        value must be our koel url/link-->
         <classes>
-            <class name="Homework17">
-                <methods>
-                    <include name="addSongToPlaylist" />
-                </methods>
-            </class>
+<!--            <class name="Homework17">-->
+<!--                <methods>-->
+<!--                    <include name="addSongToPlaylist" />-->
+<!--                </methods>-->
+<!--            </class>-->
+            <class name="MyBaseTest"/>
+            <class name="LoginTests"/>
+            <class name="POM.pages.LoginPage"/>
+            <class name="POM.pages.HomePage"/>
+            <class name="POM.pages.BasePage"/>
         </classes>
     </test>
 </suite>
