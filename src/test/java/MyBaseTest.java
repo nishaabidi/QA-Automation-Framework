@@ -1,10 +1,11 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -32,19 +33,51 @@ public class MyBaseTest {
     // now our launchbrowser method can now access baseurl parameter in TestNG xml file
     // lets try running it
     public void launchBrowser(String baseURL) {
+
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
         actions = new Actions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         url = baseURL;
         driver.get(url);
 
     }
 
+    @AfterMethod
+    public void teadDownBrowser() {
+        driver.quit();
+    }
 
+    public void clickSubmitBtn() {
+        WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='submit']")));
+        submitButton.click();
+    }
 
+    public void provideEmail(String email) {
+        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='email']")));
+        emailField.click();
+        emailField.sendKeys(email);
+    }
 
+    public void providePassword(String password) {
+        WebElement passwordField = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[type='password']")));
+        passwordField.click();
+        passwordField.sendKeys(password);
+    }
 
+    @DataProvider(name="invalidCredentials")
+    public static Object[][] getCredentials(){
 
+        return new Object[][] {
+                {"invalid@class.com", "invalidPass"},
+                {"d@class.com", ""},
+                {"", ""}
+        };
+    }
+    public void logIn(){
+        provideEmail("nishaabidi@yahoo.com");
+        providePassword("Mylife#1234");
+        clickSubmitBtn();
+    }
 }

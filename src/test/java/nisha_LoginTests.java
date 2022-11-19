@@ -3,11 +3,7 @@ import POM.pages.LoginPage;
 import my.POM.pages.MyLoginPage;
 import org.testng.annotations.Test;
 
-
-import javax.swing.*;
-import java.time.Duration;
-
-public class nisha_LoginTests extends MyBaseTest {
+public class nisha_LoginTests extends MyOldBaseTest {
 
     //lets try login methods first
 
@@ -37,8 +33,8 @@ public class nisha_LoginTests extends MyBaseTest {
         MyLoginPage myLoginPage = new MyLoginPage(driver); //our driver would be passed here
 //        next, lets retrieve our methods, as we can see, all our methods our available,
 //        the ones in the MyBasePage, and in MyLoginPage, since we extended/inherited MyBasePage
-        myLoginPage.enterEmail("test");
-        myLoginPage.enterPassword("test");
+        myLoginPage.provideEmail("test");
+        myLoginPage.providePassword("test");
 //        now we were able to access our enter email and enter password method from MyLoginPage
 //        let's try to run it'
         //and now it runs, and our codes looks cleaner now because of POM

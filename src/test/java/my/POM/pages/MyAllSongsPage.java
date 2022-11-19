@@ -1,4 +1,4 @@
-package POM.pages;
+package my.POM.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class AllSongsPage extends BasePage {
+public class MyAllSongsPage extends MyBasePage {
 
     By shuffleBtnLocator = By.cssSelector(".btn-shuffle-all");
     //    By firstSongLocator = By.cssSelector("tr.song-item");
@@ -25,7 +25,7 @@ public class AllSongsPage extends BasePage {
     // lets try to change our locator since it is identifying multiple elements
     //lets try to use this css locator
     //i think we used a wrong locator at first.
-    public AllSongsPage(WebDriver givenDriver) {
+    public MyAllSongsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
 

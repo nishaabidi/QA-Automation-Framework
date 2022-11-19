@@ -8,7 +8,7 @@ public class MyLoginPage extends MyBasePage {
 
 //    now for login page lets create another constructor for it for our driver instance, lets extend it to base page
 //    first, there our constructor is auto generated
-public MyLoginPage(WebDriver givenDriver) {
+    public MyLoginPage(WebDriver givenDriver) {
     super(givenDriver);
 }
 //    next, lets store the web elements and create methods in our Login Page, lets check it
@@ -20,30 +20,31 @@ public MyLoginPage(WebDriver givenDriver) {
 //    4.) click registration link
 //    now that we have listed some possible methods for our login page, lets create our methods
 //    lets first declare our locators, by declaring them using "By" selector
-    By emailAddressField = By.cssSelector("[type='email']");
-    By passwordField = By.cssSelector("[type='password']");
-    By submitButton = By.cssSelector("button[type='submit']");//2 elements are identified, lets add the button tag
-//lets check it if it works, it should be type attribute, next lets try password and the submit/login button
-//    next, lets try creating the enter email,password and submit methods
 
+    //     declaring the locators
+    By emailFieldLocator = By.cssSelector("[type='email']");
+    By passwordFieldLocator = By.cssSelector("[type='password']");
 
-    //it now shows 1 usage since we used it in nisha_LoginTests class
-      public void enterEmail(String email){
-          driver.findElement(emailAddressField).sendKeys(email);
-          //you can put your email here and remove the string email parameter
-//          driver.findElement(emailAddressField).sendKeys("youremail");
-      }
+    By submitButtonLocator = By.cssSelector("[type='submit']");
 
-    public void enterPassword(String password){
-        driver.findElement(passwordField).sendKeys(password);
-    }
+//    page methods
 
     public void clickSubmitBtn(){
-          driver.findElement(submitButton);
+        driver.findElement(submitButtonLocator).click();
     }
 
-//        I think we are done with the login methods, lets try running it in our test class
-//            next, lets create our test class
+    public void provideEmail(String email){
+        driver.findElement(emailFieldLocator).sendKeys(email);
+    }
 
+    public void providePassword(String password){
+        driver.findElement(passwordFieldLocator).sendKeys(password);
+    }
+
+    public void login(){
+        provideEmail("nishaabidi@yahoo.com");
+        providePassword("Mylife#1234");
+        clickSubmitBtn();
+    }
 
 }

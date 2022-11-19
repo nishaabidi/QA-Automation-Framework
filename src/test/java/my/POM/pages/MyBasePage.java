@@ -1,9 +1,9 @@
 package my.POM.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,45 +12,64 @@ import java.time.Duration;
 public class MyBasePage {
 
     public WebDriver driver;
-
     public WebDriverWait wait;
-
     public Actions actions;
 
-//    now we declare our webdriver, webdriver wait, and our actions class here,
-// so we dont have to declare it in every page, since we will inherit this page later by using "extends"
+//    locators
+    private final By allSongMenuItemLocator = By.cssSelector("li a.songs");
 
-//    next lets create a mybasepage constructor so that we could have a driver instance from our
-//    mybasetest class
-//
-//    we can use the right click + generate feature of intelliJ to create a constructor
-
-    //we named it given driver since this is the driver instance from basetest class(for readability)
-    //then lets declare our wait and action class
-    //we declared 10 seconds for webdriver wait, it will wait 10 seconds for an element before throwing an exception
-    public MyBasePage(WebDriver givenDriver) {
+    public MyBasePage(WebDriver givenDriver){
         driver = givenDriver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
     }
-    //in our base page, we put all our generic methods which can be used in all of our pages
-//    unlike login page, where we store the enteremail method since it is only used in our login page
-//    since mybasepage is for generic methods, we can add a generic method here, lets try to add
-//            the double click method, which we can use in all of our pages
 
+    public void clickOnAllSongs(){
+        driver.findElement(allSongMenuItemLocator).click();
+    }
 
-//    lets also add another method, for single click, this method will help us, since we dont have to
-//    declare the webdriver wait everytime
+    //this method performs a  click and accepts a WebElement parameter (this is the selenium click command with webdriver wait)
     public void click(WebElement locator){
+        //lets also add an explicit wait
         wait.until(ExpectedConditions.visibilityOf(locator));
+        // wait for element to be clickable
         locator.click();
+        //then performs a double click using Actions class
     }
 
-    //    in this method, it will accept a web element as its parameter, then it will perform double click
-//        then we will use the action class double click method..
+    //this method performs a double click and accepts a WebElement parameter
     public void doubleClick(WebElement locator){
+        //lets also add an explicit wait
         wait.until(ExpectedConditions.visibilityOf(locator));
-        actions.doubleClick(locator);
+        // wait for element to be clickable
+        actions.doubleClick(locator).perform();
+        //then performs a double click using Actions class
     }
+
+    //this method performs a right click and accepts a WebElement parameter
+    public void rightClick (WebElement locator){
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        actions.contextClick(locator).perform();
+    }
+
+
+    //this method performs a right click and accepts a WebElement parameter
+
+//    public void rightClick() {
+//        //lets also add an explicit wait
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(#songsWrapper>div>div>div.item-container > table > tr:nth-child(1) > td.title)));
+//        // wait for element to be clickable
+//        WebElement firstSongElement = driver.findElement(firstSongLocator);
+//        actions.contextClick(firstSongElement).perform();
+//        //then performs a right click using Actions class
+//    }
+
+
+    public void refreshCurrentPage(){
+        driver.navigate().refresh();
+        //this refreshes the current browser page
+    }
+
+
 
 }
