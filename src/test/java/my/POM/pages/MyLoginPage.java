@@ -1,7 +1,10 @@
 package my.POM.pages;
 
+import POM.pages.HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class MyLoginPage extends MyBasePage {
 
@@ -23,28 +26,36 @@ public class MyLoginPage extends MyBasePage {
 
     //     declaring the locators
     By emailFieldLocator = By.cssSelector("[type='email']");
+    @FindBy(css= "[type='email']")
+    WebElement emailField;
     By passwordFieldLocator = By.cssSelector("[type='password']");
-
+    @FindBy (css= "[type='password']")
+    WebElement passwordField;
     By submitButtonLocator = By.cssSelector("[type='submit']");
-
+    @FindBy (css= "[type='submit']")
+    WebElement submitButton;
 //    page methods
 
-    public void clickSubmitBtn(){
-        driver.findElement(submitButtonLocator).click();
+    public MyLoginPage clickSubmitBtn(){
+        submitButton.click();
+        return this;
     }
 
-    public void provideEmail(String email){
-        driver.findElement(emailFieldLocator).sendKeys(email);
+    public MyLoginPage provideEmail(String email){
+        emailField.sendKeys(email);
+        return this;
     }
 
-    public void providePassword(String password){
-        driver.findElement(passwordFieldLocator).sendKeys(password);
+    public MyLoginPage providePassword(String password){
+        passwordField.sendKeys(password);
+        return this;
     }
 
-    public void login(){
-        provideEmail("nishaabidi@yahoo.com");
-        providePassword("Mylife#1234");
-        clickSubmitBtn();
+    public HomePage login(){
+        provideEmail("nishaabidi@yahoo.com")
+                .providePassword("Mylife#1234")
+                        .clickSubmitBtn();
+        return new HomePage(driver);
     }
 
 }

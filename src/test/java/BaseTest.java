@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,6 +21,8 @@ public class BaseTest {
 
     String url;
 
+
+
     @BeforeSuite
     public static void chromeConfigs() {
         // This is for Windows users
@@ -36,7 +39,10 @@ public class BaseTest {
     // lets try running it
     public void launchBrowser(String baseURL) {
 
-        driver = new ChromeDriver();
+//        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+        driver = new FirefoxDriver();
+        driver = pickBrowser(System.getProperty("browser"));
         actions = new Actions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -44,6 +50,16 @@ public class BaseTest {
         url = baseURL;
         driver.get(url);
 
+    }
+
+    private WebDriver pickBrowser(String browser) {
+        switch (browser){
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+                return driver = new FirefoxDriver();
+            default:
+                return driver = new ChromeDriver();
+        }
     }
 
     @AfterMethod

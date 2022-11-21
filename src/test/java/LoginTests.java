@@ -44,15 +44,16 @@ public class LoginTests extends BaseTest {
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         BasePage basePage = new BasePage(driver);
+        HomePage homePage = loginPage.login();
 //shuffle works
 //         step 1 login
-        loginPage.login();
+        homePage.clickOnAllSongs();
 //        click on all songs
         basePage.clickOnAllSongs();
 //        shuffle all songs
         allSongsPage.shuffle();
 
-
+        Assert.assertTrue(homePage.isSongPlaying());
 
 //Test for POM All Songs song is playing
     }

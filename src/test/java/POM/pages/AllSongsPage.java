@@ -30,8 +30,10 @@ public class AllSongsPage extends BasePage {
     }
 
 
-    public void shuffle() {
+    public AllSongsPage shuffle() {
+
         driver.findElement(shuffleBtnLocator).click();
+        return this;
     }
 
     public void doubleClickFirstSong() {

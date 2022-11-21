@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,6 +27,9 @@ public class MyBaseTest {
         }
     }
 
+
+
+
     @BeforeMethod
     @Parameters({"baseURL"})
     // we have used parameterization here but we havent declared it in our TestNG xml file.
@@ -33,8 +37,9 @@ public class MyBaseTest {
     // now our launchbrowser method can now access baseurl parameter in TestNG xml file
     // lets try running it
     public void launchBrowser(String baseURL) {
-
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+//        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         actions = new Actions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(4));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -45,7 +50,7 @@ public class MyBaseTest {
     }
 
     @AfterMethod
-    public void teadDownBrowser() {
+    public void tearDownBrowser() {
         driver.quit();
     }
 
