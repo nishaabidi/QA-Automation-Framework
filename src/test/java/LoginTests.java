@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
                 .submit();
         Assert.assertTrue(homePage.isLoggedIn());
 
-//        Just checking :)
+//        Just checking :)))
 //        Assert.assertEquals(driver.getCurrentUrl(), "Fail please, so we see the properties: " + parameters);
     }
 
