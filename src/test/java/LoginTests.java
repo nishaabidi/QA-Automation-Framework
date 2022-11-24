@@ -13,8 +13,13 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
-    @Test(enabled = false, priority = 0)
+    @Test(enabled = false)
     public void LoginEmptyEmailPasswordTest () {
+        LoginPage loginPage = new LoginPage(getDriver());
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("");
+        loginPage.clickSubmitBtn();
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
@@ -26,8 +31,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void LoginValidEmailValidPasswordTest () {
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("nishaabidi@yahoo.com");
         loginPage.providePassword("Mylife#1234");
@@ -38,8 +43,7 @@ public class LoginTests extends BaseTest {
     }
 
 //    Test for POM AllSongs Shuffle
-    @Test
-
+    @Test(enabled = false)
     public void Shuffle() {
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -57,7 +61,7 @@ public class LoginTests extends BaseTest {
 
 //Test for POM All Songs song is playing
     }
-        @Test
+        @Test(enabled = false)
         public void PlayASongFromAllSongs(){
 
             LoginPage loginPage = new LoginPage(driver);

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
+<suite name="TestNG" parallel="methods" thread-count="2">
 
     <test name="Example Test" preserve-order="false">
         <parameter name="baseURL" value="https://bbb.testpro.io/"/>
 <!--        value must be our koel url/link-->
         <classes>
-<!--            <class name="Homework17">-->
+<!--            <class name="LoginTests">-->
+
 <!--                <methods>-->
 <!--                    <include name="addSongToPlaylist" />-->
 <!--                </methods>-->
 <!--            </class>-->
+            <class name="BaseTest"/>
             <class name="MyBaseTest"/>
-            <class name="LoginTests"/>
-            <class name="POM.pages.LoginPage"/>
-            <class name="POM.pages.HomePage"/>
-            <class name="POM.pages.BasePage"/>
+            <class name="GridTests"/>
+
         </classes>
     </test>
 </suite>
