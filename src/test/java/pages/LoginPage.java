@@ -41,8 +41,8 @@ public class LoginPage extends BasePage{
     }
 
     public HomePage login() throws InterruptedException {
-        enterEmail("demo@class.com");
-        enterPassword("te$t$tudent");
+        enterEmail("nishaabidi@yahoo.com");
+        enterPassword("Mylife#1234");
         return submit();
     }
 

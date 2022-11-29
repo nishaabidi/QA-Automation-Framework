@@ -20,6 +20,7 @@ test {
     systemProperty "env", findProperty("env")
     systemProperty "suite", findProperty("suite")
     useTestNG() {
-        suites "src/test/resources/${suite}.xml"
+//        suites "src/test/resources/${suite}.xml"
+        suites "src/test/resources/smoke.xml"
     }
 }
