@@ -7,7 +7,7 @@
                     <include name="LoginTest" />
                 </methods>
             </class>
-            <class name="PlaylistTests">
+            <class name="FavoritesTests">
             </class>
         </classes>
     </test>
