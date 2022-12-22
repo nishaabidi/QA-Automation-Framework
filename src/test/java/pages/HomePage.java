@@ -85,6 +85,7 @@ public class HomePage extends BasePage{
     )
     List<WebElement> playlists;
 
+
     public HomePage(WebDriver sentDriver) {
         super(sentDriver);
     }
@@ -199,4 +200,113 @@ public class HomePage extends BasePage{
 
 //        new WebDriverWait(driver, Duration.ofSeconds(4)).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[name='name']")));
     }
+
+    //region --SEARCH WEB ELEMENTS--
+    @FindBy(css = "input[type='search']")
+    WebElement SearchText;
+
+
+    @FindBy(xpath =  "//article/span[2]/span[contains(., 'Pluto')]")
+//    @FindBy(css = "span[class='details']")
+    WebElement SearchSongResult;
+
+    @FindBy(css = "a[href='#!/artist/3']")
+    WebElement SearchArtistResult;
+
+    @FindBy(css = "a[href='#!/album/2']")
+    WebElement SearchAlbumResult;
+
+//    @FindBy(css = "#searchExcerptsWrapper > div > div > section.songs")
+//    @FindBy(xpath = "//*[@id='searchExcerptsWrapper']/div/div/section[1]/p")
+//    @FindBy(xpath = "/html/body/div[1]/div/div[1]/section[1]/section[10]/div/div/section[1]/p")
+    @FindBy(xpath = "//section[@class='songs']/p")
+    WebElement SongNoneFound;
+
+    @FindBy(xpath = "//section[@class='artists']/p")
+//    @FindBy(css = "#searchExcerptsWrapper > div > div > section.artists >p")
+    WebElement ArtistNoneFound;
+
+    @FindBy(xpath = "//section[@class='albums']/p")
+//    @FindBy(css = "#searchExcerptsWrapper > div > div > section.albums >p")
+    WebElement AlbumNoneFound;
+
+
+    //endregion
+
+
+    //region --SEARCH METHODS--
+    public Boolean getSearchSongResult(){
+        return SearchSongResult.getAttribute("innerHTML").contains("Pluto");
+    }
+    public void SearchBySong() throws InterruptedException{
+        SearchText.sendKeys(("       Pluto         ").trim());
+    }
+
+    public void SearchByArtist() throws InterruptedException{
+        SearchText.sendKeys(("     Makaih Beats     ").trim());
+    }
+
+    public String getSearchArtistResult(){
+        return SearchArtistResult.getText();
+    }
+
+    public void SearchByAlbum() throws InterruptedException{
+        SearchText.sendKeys(("     Airbit     ").trim());
+    }
+
+    public String getSearchAlbumResult(){
+        return SearchAlbumResult.getAttribute("innerHTML");
+    }
+
+    public void  SearchWithNoResult() throws InterruptedException{
+        SearchText.sendKeys("sacrifice");
+    }
+
+    public String[] getNoneFoundResult(){
+        String[] nonefound = {SongNoneFound.getAttribute("innerHTML"), ArtistNoneFound.getAttribute("innerHTML"), AlbumNoneFound.getAttribute("innerHTML")};
+        return nonefound;
+    }
+
+    public void  SearchWithCaseSensitive() throws InterruptedException{
+        SearchText.sendKeys("pluto");
+    }
+
+    public Boolean checkCaseSensitivity(){
+
+        if(SearchSongResult.getAttribute("innerHTML").contains("Pluto")){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    public Boolean checkValue(){
+        String val = SearchText.getAttribute("value");
+        if(val.isEmpty()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void ClearSearch() throws InterruptedException{
+        SearchText.sendKeys("grav");
+        SearchText.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
+    }
+
+    public void ClearSearchX() throws InterruptedException{
+        SearchText.sendKeys("grav");
+        Actions action = new Actions(driver);
+        action.moveByOffset(223, 23).click().build().perform();
+
+    }
+
+
+    //endregion
+
+
+
 }
